@@ -6,7 +6,7 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 from pprint import pformat
 
-from fields import FIELDS
+from request_properties import REQUEST_PROPERTIES
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ formatter = HtmlFormatter()
 @app.route("/")
 def index():
     data = {}
-    for field in FIELDS:
+    for field in REQUEST_PROPERTIES:
         data[field] = getattr(request, field)
     data = pformat(data, indent=1, width=80, depth=None, compact=False) #py38: sort_dicts=True
     content = highlight(data, get_lexer_by_name("python"), formatter)
