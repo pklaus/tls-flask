@@ -15,7 +15,6 @@ RUN apt-get install \
 RUN pip3 install flask pyopenssl pygments
 
 COPY *.py /
-COPY templates /templates
 
 ENV FLASK_APP=/server.py FLASK_ENV=production
 CMD flask run --host 0.0.0.0 --port 443 --cert=adhoc
